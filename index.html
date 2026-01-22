@@ -4,91 +4,180 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kahakai Watch — Hawaii Coastal Erosion Monitoring</title>
-
   <link rel="stylesheet" href="styles.css" />
 
+  <style>
+    /* ===== NAVBAR ===== */
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f9fc;
+    }
+
+    .navbar {
+      width: 100%;
+      background-color: #001f4d; /* navy blue */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-link .logo {
+      height: 80px; /* bigger logo */
+    }
+
+    .brand-link .title {
+      font-size: 32px; /* bigger title */
+      font-weight: bold;
+      line-height: 1;
+      color: white;
+    }
+
+    .brand-link .subtitle {
+      font-size: 18px; /* bigger subtitle */
+      color: white;
+    }
+
+    /* vertically center text next to image */
+    .brand-link div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* NAV LINKS */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      transition: 0.25s;
+    }
+
+    .nav-links li a:hover {
+      opacity: 0.7;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #004f7c;
+      color: black; /* change copyright text to black */
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .site-footer a {
+      color: #cce7f6;
+      text-decoration: none;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: black;
+    }
+  </style>
+</head>
+
 <body>
-<!-- NAV BAR -->
-<nav class="navbar">
-  <a href="index.html" class="brand-link">
-    <img src="images/kahakaiwatch.jpg" alt="Kahakai Watch Logo" class="logo" />
-    <div>
-      <div class="title">Kahakai Watch</div>
-      <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
-    </div>
-  </a>
-</body>
+  <!-- NAV BAR -->
+  <nav class="navbar">
+    <a href="index.html" class="brand-link">
+      <img src="images/kahakaiwatch.jpg" alt="Kahakai Watch Logo" class="logo" />
+      <div>
+        <div class="title">Kahakai Watch</div>
+        <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
+      </div>
+    </a>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="data.html">Data</a></li>
-    <li><a href="map.html">Map</a></li>
-    <li><a href="about.html">About</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<main class="hero">
-  <div class="hero-content">
-    <h1>Monitoring Shoreline Change Across Hawai‘i</h1>
-    <p class="lead">
-      Using satellite data, GIS tools, and cyber infrastructure to visualize
-      and predict coastal erosion for communities, planners, and students.
-    </p>
-
-    <a class="btn primary" href="map.html">Explore the Map</a>
-    <a class="btn" href="data.html">View Datasets</a>
-  </div>
-
-  <div class="hero-visual">
-    <div class="map-placeholder">
-      <span>Interactive Map →</span>
-      <a class="btn primary" href="map.html">Open Map</a>
-    </div>
-  </div>
-</main>
-
-<!-- INTRO CARDS -->
-<section class="intro-cards">
-  <article>
-    <h3>Why Kahakai Watch?</h3>
-    <p>
-      Hawai‘i lacks a unified system for shoreline change. Kahakai Watch
-      aggregates public datasets and highlights erosion risks.
-    </p>
-  </article>
-
-  <article>
-    <h3>Who This Helps</h3>
-    <p>
-      Students, researchers, community groups, and agencies can use this
-      platform to make data-driven coastal decisions.
-    </p>
-  </article>
-
-  <article>
-    <h3>Get Involved</h3>
-    <p>
-      All datasets are open — contribute observations, drone imagery,
-      or school projects.
-    </p>
-  </article>
-</section>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div>
-    <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
-    email: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
-  </div>
-
-  <nav class="footer-links">
-    <a href="about.html">Proposal</a>
-    <a href="data.html">Data</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="data.html">Data</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
   </nav>
 
-  <div class="copyright">© 2025 Kahakai Watch</div>
-</footer>
+  <!-- HERO -->
+  <main class="hero">
+    <div class="hero-content">
+      <h1>Monitoring Shoreline Change Across Hawai‘i</h1>
+      <p class="lead">
+        Using satellite data, GIS tools, and cyber infrastructure to visualize
+        and predict coastal erosion for communities, planners, and students.
+      </p>
 
+      <a class="btn primary" href="map.html">Explore the Map</a>
+      <a class="btn" href="data.html">View Datasets</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="map-placeholder">
+        <span>Interactive Map →</span>
+        <a class="btn primary" href="map.html">Open Map</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- INTRO CARDS -->
+  <section class="intro-cards">
+    <article>
+      <h3>Why Kahakai Watch?</h3>
+      <p>
+        Hawai‘i lacks a unified system for shoreline change. Kahakai Watch
+        aggregates public datasets and highlights erosion risks.
+      </p>
+    </article>
+
+    <article>
+      <h3>Who This Helps</h3>
+      <p>
+        Students, researchers, community groups, and agencies can use this
+        platform to make data-driven coastal decisions.
+      </p>
+    </article>
+
+    <article>
+      <h3>Get Involved</h3>
+      <p>
+        All datasets are open — contribute observations, drone imagery,
+        or school projects.
+      </p>
+    </article>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>
+      <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
+      email: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+    </div>
+
+    <div class="copyright">© 2025 Kahakai Watch</div>
+  </footer>
 </body>
 </html>
