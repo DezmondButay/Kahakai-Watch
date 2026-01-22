@@ -1,93 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Kahakai Watch</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ===== GENERAL FONT ===== */
+    body, h1, h2, h3, p, a, li, div, ol {
+      font-family: "Times New Roman", Times, serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f6f9fc;
+      line-height: 1.6;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      width: 100%;
+      background-color: #001f4d; /* navy blue */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      color: white;
+    }
+
+    /* logo square */
+    .brand-link .logo {
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+    }
+
+    .brand-link div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertically center text with logo */
+    }
+
+    .brand-link .title {
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .brand-link .subtitle {
+      font-size: 18px;
+      color: white;
+    }
+
+    /* NAV LINKS */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      transition: 0.25s;
+    }
+
+    .nav-links li a:hover {
+      opacity: 0.7;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      max-width: var(--max-width, 900px);
+      margin: 28px auto;
+      padding: 20px;
+    }
+
+    h1, h2, h3 {
+      color: #0d3b66;
+    }
+
+    hr {
+      margin: 20px 0;
+      border: 0;
+      border-top: 1px solid #ccc;
+    }
+
+    ol {
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #004f7c;
+      color: white;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .site-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: white;
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="navbar">
-  <div class="brand">
+  <!-- NAV BAR -->
+  <nav class="navbar">
     <a href="index.html" class="brand-link">
-      <img src="images/kahakaiwatch.jpg" alt="Kahakai Watch logo" class="logo" />
-      <span class="title">Kahakai Watch</span>
+      <img src="images/kahakaiwatch.jpeg" alt="Kahakai Watch Logo" class="logo" />
+      <div>
+        <div class="title">Kahakai Watch</div>
+        <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
+      </div>
     </a>
-  </div>
 
-  <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="data.html">Data</a></li>
-    <li><a href="map.html">Map</a></li>
-    <li><a href="about.html">About</a></li>
-  </ul>
-</nav>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="data.html">Data</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 
-<main style="max-width:var(--max-width); margin:28px auto; padding:20px;">
-  <h1>Researching Hawaii Coastal Erosion Monitoring With Cyber Infrastructure</h1>
+  <!-- MAIN CONTENT -->
+  <main>
+    <h1>Researching Hawaii Coastal Erosion Monitoring With Cyber Infrastructure</h1>
 
-  <p>
-    <strong>Dezmond Butay</strong><br />
-    STEM Capstone Program — Waipahu High School<br />
-    November 09, 2025
-  </p>
-
-  <hr />
-
-  <section>
-    <h2>Abstract</h2>
     <p>
-      This proposal focuses on studying coastal erosion in Hawai‘i and exploring
-      how cyber infrastructure and digital tools can help monitor and predict
-      shoreline changes.
+      <strong>Dezmond Butay</strong><br />
+      STEM Capstone Program — Waipahu High School<br />
+      November 09, 2025
     </p>
-  </section>
 
-  <section>
-    <h2>Introduction</h2>
-    <p>
-      Hawai‘i’s coastlines are under threat from rising sea levels, strong wave
-      activity, and storms.
-    </p>
-  </section>
+    <hr />
 
-  <section>
-    <h2>Background and Significance</h2>
-    <p>
-      Coastal erosion occurs when natural forces like waves, tides, and currents
-      remove sand and soil from the shore.
-    </p>
-  </section>
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        This proposal focuses on studying coastal erosion in Hawai‘i and exploring
+        how cyber infrastructure and digital tools can help monitor and predict
+        shoreline changes.
+      </p>
+    </section>
 
-  <section>
-    <h2>Problem Statement</h2>
-    <p>
-      Hawai‘i does not yet have a fully integrated system that tracks coastal
-      erosion consistently over time.
-    </p>
-  </section>
+    <section>
+      <h2>Introduction</h2>
+      <p>
+        Hawai‘i’s coastlines are under threat from rising sea levels, strong wave
+        activity, and storms.
+      </p>
+    </section>
 
-  <section>
-    <h2>Hypothesis and Goals</h2>
-    <p>
-      <strong>Hypothesis:</strong>
-      Using cyber infrastructure to collect and visualize shoreline data will
-      improve erosion prediction and coastal planning.
-    </p>
-    <ol>
-      <li>Collect shoreline and sea level rise data.</li>
-      <li>Visualize erosion patterns over time.</li>
-      <li>Identify high-risk coastal areas.</li>
-      <li>Provide public access to erosion data.</li>
-    </ol>
-  </section>
-</main>
+    <section>
+      <h2>Background and Significance</h2>
+      <p>
+        Coastal erosion occurs when natural forces like waves, tides, and currents
+        remove sand and soil from the shore.
+      </p>
+    </section>
 
-<footer class="site-footer">
-  <div>Dezmond Butay — Waipahu High School</div>
-  <div>&copy; 2025 Kahakai Watch</div>
-</footer>
+    <section>
+      <h2>Problem Statement</h2>
+      <p>
+        Hawai‘i does not yet have a fully integrated system that tracks coastal
+        erosion consistently over time.
+      </p>
+    </section>
+
+    <section>
+      <h2>Hypothesis and Goals</h2>
+      <p>
+        <strong>Hypothesis:</strong>
+        Using cyber infrastructure to collect and visualize shoreline data will
+        improve erosion prediction and coastal planning.
+      </p>
+      <ol>
+        <li>Collect shoreline and sea level rise data.</li>
+        <li>Visualize erosion patterns over time.</li>
+        <li>Identify high-risk coastal areas.</li>
+        <li>Provide public access to erosion data.</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>Dezmond Butay — Waipahu High School</div>
+    <div class="copyright">© 2025 Kahakai Watch</div>
+  </footer>
 
 </body>
 </html>
