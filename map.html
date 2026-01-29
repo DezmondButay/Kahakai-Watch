@@ -1,23 +1,148 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Map — Kahakai Watch</title>
-
-  <!-- leaflet css from CDN -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    integrity="sha256-sA+4m9T2dRzQY5bK6sY7r2tVbYb3w3GL3k7fXkzE6u8=" crossorigin=""/>
-
   <link rel="stylesheet" href="styles.css" />
+
   <style>
-    #map { width:100%; height:70vh; border-radius:12px; box-shadow: var(--shadow); border:1px solid #e6f0ff; }
-    .map-controls { max-width:var(--max-width); margin:10px auto; display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:center; padding:0 20px }
+    /* ===== PAGE STYLING ===== */
+    body {
+      background: #f6f9fc;
+      font-family: "Times New Roman", Times, serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      width: 100%;
+      background-color: #001f4d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-link .logo {
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+    }
+
+    .brand-link div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .brand-link .title {
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .brand-link .subtitle {
+      font-size: 18px;
+      color: white;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      transition: 0.25s;
+    }
+
+    .nav-links li a:hover {
+      opacity: 0.7;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 70vh;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      border: 1px solid #e6f0ff;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .map-caption {
+      text-align: center;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: #004f7c;
+      color: white;
+      padding: 25px 40px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      font-family: "Times New Roman", Times, serif;
+    }
+
+    .site-footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .copyright {
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+    }
   </style>
 </head>
+
 <body>
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <div class="brand"><img src="logo.svg" alt="" class="logo" /><div><div class="title">Kahakai Watch</div></div></div>
+    <a href="index.html" class="brand-link">
+      <img src="images/kahakaiwatch.jpeg" alt="Kahakai Watch Logo" class="logo" />
+      <div>
+        <div class="title">Kahakai Watch</div>
+        <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
+      </div>
+    </a>
+
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="data.html">Data</a></li>
@@ -26,103 +151,33 @@
     </ul>
   </nav>
 
-  <main style="max-width:var(--max-width); margin:18px auto; padding:20px;">
-    <h1>Interactive Map</h1>
+  <!-- MAIN CONTENT -->
+  <main>
+    <h1>Interactive Coastal Erosion Map</h1>
 
-    <div class="map-controls">
-      <div>
-        <label for="base">base:</label>
-        <select id="base">
-          <option value="osm">openstreetmap</option>
-          <option value="sat">satellite (esri)</option>
-        </select>
-      </div>
-
-      <div>
-        <label for="geojsonUrl">geojson url:</label>
-        <input id="geojsonUrl" style="width:360px" placeholder="https://example.com/shoreline.geojson" />
-        <button id="loadGeo">load</button>
-      </div>
-
-      <div style="color:var(--muted)">Tip: paste pacioos / hi-geoportal geojson URLs or host your own</div>
+    <!-- MAP EMBED -->
+    <div class="map-container">
+      <iframe 
+        src="https://uhm.maps.arcgis.com/apps/View/index.html?appid=9b7bed18b79e4b61b4fc0306abe14024" 
+        width="100%" 
+        height="100%" 
+        style="border:0;" 
+        allowfullscreen>
+      </iframe>
     </div>
-
-    <div id="map"></div>
-
-    <section style="margin-top:18px;">
-      <h2>Notes</h2>
-      <p>
-        This map uses leaflet. By default no external shoreline is loaded — paste a geojson url above and click "load".
-        You can replace the sample url with pacioos or hawaii geoportal endpoints (or your own hosted geojson).
-      </p>
-    </section>
+    <p class="map-caption">
+      Red areas indicate zones with the highest projected shoreline change or erosion risk. Data from University of Hawai‘i coastal studies.
+    </p>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <div>Dezmond Butay — Waipahu High School</div>
-    <div class="copyright">&copy; 2025 Kahakai Watch</div>
+    <div>
+      <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
+      email: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+    </div>
+
+    <div class="copyright">© 2025 Kahakai Watch</div>
   </footer>
-
-  <!-- leaflet js -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-Vt7Kq0gk8z1djw9qvY+Y+GBmC0wq2G7zRZrV6k5k6IQ=" crossorigin=""></script>
-
-  <script>
-    const map = L.map('map').setView([21.3, -157.9], 8);
-
-    const baselayers = {
-      osm: L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors' }),
-      sat: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { attribution: 'Esri' })
-    };
-
-    baselayers.osm.addTo(map);
-    let shorelineLayer = L.layerGroup().addTo(map);
-
-    document.getElementById('base').addEventListener('change', (e) => {
-      const key = e.target.value;
-      Object.values(baselayers).forEach(l => map.removeLayer(l));
-      baselayers[key].addTo(map);
-    });
-
-    async function loadGeoJSON(url) {
-      shorelineLayer.clearLayers();
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error('fetch error ' + res.status);
-        const geo = await res.json();
-        const g = L.geoJSON(geo, {
-          style: (f) => {
-            // style shoreline lines differently from polygons/points
-            return { color: '#d32f2f', weight: 2.5 };
-          },
-          onEachFeature: (feature, layer) => {
-            let html = '<div style="font-size:0.95rem">';
-            if (feature.properties) {
-              for (const k of Object.keys(feature.properties)) {
-                html += `<b>${k}:</b> ${feature.properties[k]}<br/>`;
-              }
-            }
-            html += '</div>';
-            layer.bindPopup(html);
-          }
-        });
-        shorelineLayer.addLayer(g);
-        map.fitBounds(g.getBounds(), { padding: [40,40] });
-      } catch (err) {
-        alert('error loading geojson: ' + err.message);
-      }
-    }
-
-    document.getElementById('loadGeo').addEventListener('click', () => {
-      const url = document.getElementById('geojsonUrl').value.trim();
-      if (!url) { alert('paste a geojson url'); return; }
-      loadGeoJSON(url);
-    });
-
-    // example: preload a sample geojson if you'd like (comment out if empty)
-    // const sample = 'data/sample-shoreline.geojson';
-    // loadGeoJSON(sample);
-  </script>
 </body>
 </html>
-
