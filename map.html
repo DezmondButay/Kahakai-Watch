@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* ===== PAGE STYLING ===== */
     body {
       background: #f6f9fc;
       font-family: "Times New Roman", Times, serif;
@@ -15,7 +14,7 @@
       padding: 0;
     }
 
-    /* ===== NAVBAR ===== */
+    /* NAVBAR */
     .navbar {
       width: 100%;
       background-color: #001f4d;
@@ -78,7 +77,7 @@
       opacity: 0.7;
     }
 
-    /* ===== MAIN CONTENT ===== */
+    /* MAIN CONTENT */
     main {
       max-width: 1200px;
       margin: 20px auto;
@@ -88,6 +87,19 @@
     h1 {
       text-align: center;
       margin-bottom: 20px;
+    }
+
+    .map-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .map-selector select {
+      font-size: 1rem;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
     .map-container {
@@ -106,7 +118,7 @@
       color: #333;
     }
 
-    /* ===== FOOTER ===== */
+    /* FOOTER */
     .site-footer {
       background: #004f7c;
       color: white;
@@ -155,9 +167,19 @@
   <main>
     <h1>Interactive Coastal Erosion Map</h1>
 
-    <!-- MAP EMBED -->
+    <!-- MAP SELECTOR -->
+    <div class="map-selector">
+      <label for="islandMap" style="margin-right:8px; font-weight:bold;">Select Island:</label>
+      <select id="islandMap">
+        <option value="oahu">Oʻahu</option>
+        <option value="other">Other Islands</option>
+      </select>
+    </div>
+
+    <!-- MAP IFRAME -->
     <div class="map-container">
       <iframe 
+        id="mapFrame"
         src="https://uhm.maps.arcgis.com/apps/View/index.html?appid=9b7bed18b79e4b61b4fc0306abe14024" 
         width="100%" 
         height="100%" 
@@ -165,8 +187,9 @@
         allowfullscreen>
       </iframe>
     </div>
-    <p class="map-caption">
-      Red areas indicate zones with the highest projected shoreline change or erosion risk. Data from University of Hawai‘i coastal studies.
+
+    <p class="map-caption" id="mapCaption">
+      Red areas indicate zones with the highest projected shoreline change or erosion risk on Oʻahu. Data from University of Hawai‘i coastal studies.
     </p>
   </main>
 
@@ -176,8 +199,30 @@
       <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
       email: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
     </div>
-
     <div class="copyright">© 2025 Kahakai Watch</div>
   </footer>
+
+  <!-- SCRIPT TO SWITCH MAPS -->
+  <script>
+    const mapSelect = document.getElementById('islandMap');
+    const mapFrame = document.getElementById('mapFrame');
+    const mapCaption = document.getElementById('mapCaption');
+
+    const mapUrls = {
+      oahu: 'https://uhm.maps.arcgis.com/apps/View/index.html?appid=9b7bed18b79e4b61b4fc0306abe14024',
+      other: 'https://www.arcgis.com/apps/webappviewer/index.html?id=768afcdfa4ec457e948067a9c62b8f02&extent=-17471068.3385%2C2383086.6953%2C-17357788.6625%2C2438121.3557%2C102100m'
+    };
+
+    const captions = {
+      oahu: 'Red areas indicate zones with the highest projected shoreline change or erosion risk on Oʻahu. Data from University of Hawai‘i coastal studies.',
+      other: 'Red areas indicate zones with the highest projected shoreline change or erosion risk on other islands. Data from University of Hawai‘i coastal studies.'
+    };
+
+    mapSelect.addEventListener('change', (e) => {
+      const val = e.target.value;
+      mapFrame.src = mapUrls[val];
+      mapCaption.textContent = captions[val];
+    });
+  </script>
 </body>
 </html>
