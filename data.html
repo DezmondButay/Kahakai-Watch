@@ -4,10 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kahakai Watch — Hawaii Coastal Erosion Monitoring</title>
-  <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* ===== GENERAL FONT ===== */
+    /* ===== GENERAL ===== */
     body, h1, h2, h3, p, a, li, div {
       font-family: "Times New Roman", Times, serif;
       margin: 0;
@@ -18,10 +17,30 @@
       background: #f6f9fc;
     }
 
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
     /* ===== NAVBAR ===== */
     .navbar {
       width: 100%;
-      background-color: #001f4d; /* navy blue */
+      background-color: #001f4d;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,18 +59,10 @@
       color: white;
     }
 
-    /* ===== LOGO SQUARE ===== */
     .brand-link .logo {
-      height: 100px;  /* height of logo */
-      width: 100px;   /* force width = height for square */
-      object-fit: cover; /* crop image to fit square without stretching */
-    }
-
-    /* ===== TEXT NEXT TO LOGO ===== */
-    .brand-link div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* vertically center text with image */
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
     }
 
     .brand-link .title {
@@ -65,7 +76,6 @@
       color: white;
     }
 
-    /* NAV LINKS */
     .nav-links {
       list-style: none;
       display: flex;
@@ -76,184 +86,220 @@
       text-decoration: none;
       color: white;
       font-size: 18px;
-      font-weight: 500;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      padding: 12px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 16px;
+      border: 1px solid #001f4d;
+      color: #001f4d;
       transition: 0.25s;
     }
 
-    .nav-links li a:hover {
-      opacity: 0.7;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      background: #004f7c;
-      color: white; /* all text white */
-      padding: 25px 40px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-family: "Times New Roman", Times, serif;
-    }
-
-    .site-footer a {
-      color: white; /* all links white */
-      text-decoration: none;
-    }
-
-    .copyright {
-      width: 100%;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 12px;
+    .btn.primary {
+      background: #001f4d;
       color: white;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ===== HERO (MINIMAL) ===== */
+    .hero {
+      padding: 40px 0 10px;
+      text-align: center;
+    }
+
+    /* ===== INTRO CARDS ===== */
+    .intro-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      padding: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .intro-cards article {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
     /* ===== BAR GRAPH ===== */
     .bar-graph-section {
       padding: 40px;
-      background: #fff;
-      margin: 40px auto;
+      background: #ffffff;
+      margin: 20px auto;
       max-width: 700px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.1);
       border-radius: 8px;
+      text-align: center;
     }
 
-    .bar-graph-section h2 {
+    /* ===== ANALYSIS SECTION ===== */
+    .analysis-section {
+      padding: 50px 40px;
+      background: #f6f9fc;
+    }
+
+    .analysis-section h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 35px;
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .analysis-box {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      font-size: 15px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    /* stagger animation */
+    .analysis-box:nth-child(1) { animation-delay: 0.1s; }
+    .analysis-box:nth-child(2) { animation-delay: 0.2s; }
+    .analysis-box:nth-child(3) { animation-delay: 0.3s; }
+    .analysis-box:nth-child(4) { animation-delay: 0.4s; }
+    .analysis-box:nth-child(5) { animation-delay: 0.5s; }
+    .analysis-box:nth-child(6) { animation-delay: 0.6s; }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: #004f7c;
+      color: white;
+      padding: 25px 40px;
+      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <!-- NAV BAR -->
-  <nav class="navbar">
-    <a href="index.html" class="brand-link">
-      <img src="images/kahakaiwatch.jpeg" alt="Kahakai Watch Logo" class="logo" />
-      <div>
-        <div class="title">Kahakai Watch</div>
-        <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
-      </div>
-    </a>
 
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="data.html">Data</a></li>
-      <li><a href="map.html">Map</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-
-  <!-- HERO -->
-  <main class="hero">
-    <div class="hero-content">
-      <h1>Monitoring Shoreline Change Across Hawai‘i</h1>
-      <p class="lead">
-        Using satellite data, GIS tools, and cyber infrastructure to visualize
-        and predict coastal erosion for communities, planners, and students.
-      </p>
-
-      <a class="btn primary" href="map.html">Explore the Map</a>
-      <a class="btn" href="data.html">View Datasets</a>
-    </div>
-
-    <div class="hero-visual">
-      <div class="map-placeholder">
-        <span>Interactive Map →</span>
-        <a class="btn primary" href="map.html">Open Map</a>
-      </div>
-    </div>
-  </main>
-
-  <!-- INTRO CARDS -->
-  <section class="intro-cards">
-    <article>
-      <h3>Why Kahakai Watch?</h3>
-      <p>
-        Hawai‘i lacks a unified system for shoreline change. Kahakai Watch
-        aggregates public datasets and highlights erosion risks.
-      </p>
-    </article>
-
-    <article>
-      <h3>Who This Helps</h3>
-      <p>
-        Students, researchers, community groups, and agencies can use this
-        platform to make data-driven coastal decisions.
-      </p>
-    </article>
-
-    <article>
-      <h3>Get Involved</h3>
-      <p>
-        All datasets are open — contribute observations, drone imagery,
-        or school projects.
-      </p>
-    </article>
-  </section>
-
-  <!-- BAR GRAPH SECTION -->
-  <section class="bar-graph-section">
-    <h2>Shoreline Change by Island</h2>
-    <canvas id="erosionChart" width="600" height="400"></canvas>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="brand-link">
+    <img src="images/kahakaiwatch.jpeg" class="logo" />
     <div>
-      <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
-      email: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+      <div class="title">Kahakai Watch</div>
+      <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="data.html">Data</a></li>
+    <li><a href="map.html">Map</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
+
+<!-- INTRO CARDS -->
+<section class="intro-cards fade-up">
+  <article>
+    <h3>Why Kahakai Watch?</h3>
+    <p>Hawai‘i lacks a unified shoreline change system.</p>
+  </article>
+
+  <article>
+    <h3>Who This Helps</h3>
+    <p>Students, researchers, planners, and communities.</p>
+  </article>
+
+  <article>
+    <h3>Get Involved</h3>
+    <p>Open datasets for research and school projects.</p>
+  </article>
+</section>
+
+<!-- BAR GRAPH -->
+<section class="bar-graph-section fade-up delay-1">
+  <h2>Shoreline Change by Island</h2>
+  <canvas id="erosionChart" width="600" height="400"></canvas>
+
+  <div style="margin-top:25px;">
+    <a class="btn primary" href="map.html">Explore the Map</a>
+  </div>
+</section>
+
+<!-- ANALYSIS -->
+<section class="analysis-section">
+  <h2>More Data Analysis</h2>
+
+  <div class="analysis-grid">
+    <div class="analysis-box">
+      <h3>📌 Project Overview & Objectives</h3>
+      <p>Define shoreline erosion goals and context.</p>
     </div>
 
-    <div class="copyright">© 2025 Kahakai Watch</div>
-  </footer>
+    <div class="analysis-box">
+      <h3>🧹 Data Preparation</h3>
+      <p>Cleaned and structured public coastal datasets.</p>
+    </div>
 
-  <!-- CHART.JS SCRIPT -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctx = document.getElementById('erosionChart').getContext('2d');
+    <div class="analysis-box">
+      <h3>⚙️ Methodology</h3>
+      <p>Descriptive and exploratory analysis.</p>
+    </div>
 
-    const data = {
-        labels: ['Oahu', 'Maui', 'Hawaii', 'Kauai'],
-        datasets: [{
-            label: 'Shoreline Change (meters/year)',
-            data: [1.2, 0.8, 1.5, 1.0], // replace with your actual data
-            backgroundColor: 'rgba(0, 31, 77, 0.7)',
-            borderColor: 'rgba(0, 31, 77, 1)',
-            borderWidth: 1
-        }]
-    };
+    <div class="analysis-box">
+      <h3>📊 Analysis & Visualization</h3>
+      <p>Charts and maps reveal erosion trends.</p>
+    </div>
 
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-                tooltip: {
-                    enabled: true,
-                    callbacks: {
-                        label: function(context) {
-                            return context.dataset.label + ': ' + context.raw + ' m/year';
-                        }
-                    }
-                },
-                legend: { display: false }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: { display: true, text: 'Meters per Year' }
-                },
-                x: {
-                    title: { display: true, text: 'Island' }
-                }
-            }
-        }
-    };
+    <div class="analysis-box">
+      <h3>🔍 Findings</h3>
+      <p>Higher erosion rates on select islands.</p>
+    </div>
 
-    const erosionChart = new Chart(ctx, config);
-  </script>
+    <div class="analysis-box">
+      <h3>✅ Conclusion</h3>
+      <p>Supports informed coastal planning.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p><strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School</p>
+  <p>© 2025 Kahakai Watch</p>
+</footer>
+
+<!-- CHART -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('erosionChart');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Oahu', 'Maui', 'Hawaii', 'Kauai'],
+      datasets: [{
+        data: [1.2, 0.8, 1.5, 1.0],
+        backgroundColor: 'rgba(0,31,77,0.7)'
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
+    }
+  });
+</script>
+
 </body>
 </html>
