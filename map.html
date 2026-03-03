@@ -1,228 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Map — Kahakai Watch</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Map — Kahakai Watch</title>
+<link rel="stylesheet" href="styles.css" />
 
-  <style>
-    body {
-      background: #f6f9fc;
-      font-family: "Times New Roman", Times, serif;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+body {
+  background: #f6f9fc;
+  font-family: "Times New Roman", Times, serif;
+  margin: 0;
+  padding: 0;
+}
 
-    /* NAVBAR */
-    .navbar {
-      width: 100%;
-      background-color: #001f4d;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 40px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-    }
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    .brand-link {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      text-decoration: none;
-      color: white;
-    }
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
 
-    .brand-link .logo {
-      height: 100px;
-      width: 100px;
-      object-fit: cover;
-    }
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
 
-    .brand-link div {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+/* NAVBAR */
+.navbar {
+  width: 100%;
+  background-color: #001f4d;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
 
-    .brand-link .title {
-      font-size: 32px;
-      font-weight: bold;
-      color: white;
-    }
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: white;
+}
 
-    .brand-link .subtitle {
-      font-size: 18px;
-      color: white;
-    }
+.brand-link .logo {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
+}
 
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 24px;
-    }
+.brand-link div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    .nav-links li a {
-      text-decoration: none;
-      color: white;
-      font-size: 18px;
-      font-weight: 500;
-      transition: 0.25s;
-    }
+.brand-link .title {
+  font-size: 32px;
+  font-weight: bold;
+  color: white;
+}
 
-    .nav-links li a:hover {
-      opacity: 0.7;
-    }
+.brand-link .subtitle {
+  font-size: 18px;
+  color: white;
+}
 
-    /* MAIN CONTENT */
-    main {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 20px;
-    }
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  transition: 0.25s;
+}
 
-    .map-selector {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
+.nav-links li a:hover {
+  opacity: 0.7;
+}
 
-    .map-selector select {
-      font-size: 1rem;
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
+/* MAIN CONTENT */
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
 
-    .map-container {
-      width: 100%;
-      height: 70vh;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      border: 1px solid #e6f0ff;
-      overflow: hidden;
-      margin-bottom: 12px;
-    }
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-    .map-caption {
-      text-align: center;
-      font-size: 1rem;
-      color: #333;
-    }
+.map-container {
+  width: 100%;
+  height: 70vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  border: 1px solid #e6f0ff;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
 
-    /* FOOTER */
-    .site-footer {
-      background: #004f7c;
-      color: white;
-      padding: 25px 40px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      font-family: "Times New Roman", Times, serif;
-    }
+.map-caption {
+  text-align: center;
+  font-size: 1rem;
+  color: #333;
+}
 
-    .site-footer a {
-      color: white;
-      text-decoration: none;
-    }
+/* FOOTER */
+.site-footer {
+  background: #004f7c;
+  color: white;
+  padding: 25px 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
 
-    .copyright {
-      width: 100%;
-      text-align: center;
-      margin-top: 10px;
-      font-size: 12px;
-    }
-  </style>
+.site-footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.copyright {
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+}
+</style>
 </head>
 
 <body>
-  <!-- NAVBAR -->
-  <nav class="navbar">
-    <a href="index.html" class="brand-link">
-      <img src="images/kahakaiwatch.jpeg" alt="Kahakai Watch Logo" class="logo" />
-      <div>
-        <div class="title">Kahakai Watch</div>
-        <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
-      </div>
-    </a>
 
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="data.html">Data</a></li>
-      <li><a href="map.html">Map</a></li>
-      <li><a href="about.html">About</a></li>
-    </ul>
-  </nav>
-
-  <!-- MAIN CONTENT -->
-  <main>
-    <h1>Interactive Coastal Erosion Map</h1>
-
-    <!-- MAP SELECTOR -->
-    <div class="map-selector">
-      <label for="islandMap" style="margin-right:8px; font-weight:bold;">Select Island:</label>
-      <select id="islandMap">
-        <option value="oahu">Oʻahu</option>
-        <option value="other">Other Islands</option>
-      </select>
-    </div>
-
-    <!-- MAP IFRAME -->
-    <div class="map-container">
-      <iframe 
-        id="mapFrame"
-        src="https://uhm.maps.arcgis.com/apps/View/index.html?appid=9b7bed18b79e4b61b4fc0306abe14024" 
-        width="100%" 
-        height="100%" 
-        style="border:0;" 
-        allowfullscreen>
-      </iframe>
-    </div>
-
-    <p class="map-caption" id="mapCaption">
-      Red areas indicate zones with the highest projected shoreline change or erosion risk on Oʻahu. Data from University of Hawai‘i coastal studies.
-    </p>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="brand-link">
+    <img src="images/kahakaiwatch.jpeg" alt="Kahakai Watch Logo" class="logo" />
     <div>
-      <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
-      Email Me!: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+      <div class="title">Kahakai Watch</div>
+      <div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
     </div>
-    <div class="copyright">© 2025 Kahakai Watch</div>
-  </footer>
+  </a>
 
-  <!-- SCRIPT TO SWITCH MAPS -->
-  <script>
-    const mapSelect = document.getElementById('islandMap');
-    const mapFrame = document.getElementById('mapFrame');
-    const mapCaption = document.getElementById('mapCaption');
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="data.html">Data</a></li>
+    <li><a href="map.html">Map</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
 
-    const mapUrls = {
-      oahu: 'https://uhm.maps.arcgis.com/apps/View/index.html?appid=9b7bed18b79e4b61b4fc0306abe14024',
-      other: 'https://www.arcgis.com/apps/webappviewer/index.html?id=768afcdfa4ec457e948067a9c62b8f02&extent=-17471068.3385%2C2383086.6953%2C-17357788.6625%2C2438121.3557%2C102100m'
-    };
+<!-- MAIN CONTENT -->
+<main>
+  <h1 class="fade-up">Hawaiian Islands Shoreline Change Map</h1>
 
-    const captions = {
-      oahu: 'Red areas indicate zones with the highest projected shoreline change or erosion risk on Oʻahu. Data from University of Hawai‘i coastal studies.',
-      other: 'Red areas indicate zones with the highest projected shoreline change or erosion risk on other islands. Data from University of Hawai‘i coastal studies.'
-    };
+  <div class="map-container fade-up delay-1">
+    <iframe 
+      src="https://www.arcgis.com/apps/webappviewer/index.html?id=768afcdfa4ec457e948067a9c62b8f02&extent=-17471068.3385%2C2383086.6953%2C-17357788.6625%2C2438121.3557%2C102100m"
+      width="100%" 
+      height="100%" 
+      style="border:0;" 
+      allowfullscreen>
+    </iframe>
+  </div>
 
-    mapSelect.addEventListener('change', (e) => {
-      const val = e.target.value;
-      mapFrame.src = mapUrls[val];
-      mapCaption.textContent = captions[val];
-    });
-  </script>
+  <p class="map-caption fade-up delay-2">
+    Red areas indicate zones with the highest projected shoreline change or erosion risk across Oʻahu, Maui, and Kauaʻi. 
+    Data from University of Hawai‘i coastal studies.
+  </p>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer fade-up delay-3">
+  <div>
+    <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br />
+    Email Me!: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+  </div>
+  <div class="copyright">© 2025 Kahakai Watch</div>
+</footer>
+
 </body>
 </html>
