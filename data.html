@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kahakai Watch — Data</title>
+<title>Kahakai Watch — Coastal Erosion Data</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 /* ===== GENERAL FONT ===== */
-
 body, h1, h2, h3, p, a, li, div{
 font-family:"Times New Roman", Times, serif;
 margin:0;
@@ -22,7 +21,6 @@ background:#f6f9fc;
 }
 
 /* ===== NAVBAR ===== */
-
 .navbar{
 width:100%;
 background-color:#001f4d;
@@ -85,14 +83,26 @@ transition:.25s;
 opacity:.7;
 }
 
-/* ===== PAGE SECTION ===== */
+/* ===== HERO SECTION ===== */
+.hero-text{
+text-align:center;
+margin:40px auto;
+max-width:900px;
+}
 
-section{
-padding:60px 40px;
+.hero-text h1{
+font-size:36px;
+color:#001f4d;
+margin-bottom:12px;
+}
+
+.hero-text p{
+font-size:18px;
+color:#004f7c;
+line-height:1.5;
 }
 
 /* ===== CHART STYLE ===== */
-
 .chart-container{
 width:80%;
 max-width:900px;
@@ -103,8 +113,31 @@ border-radius:12px;
 box-shadow:0 4px 12px rgba(0,0,0,0.12);
 }
 
-/* ===== FOOTER ===== */
+/* ===== ANALYSIS BOXES ===== */
+.analysis{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:40px;
+max-width:1100px;
+margin-left:auto;
+margin-right:auto;
+}
 
+.analysis-box{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+min-height:170px;
+}
+
+.analysis-box h3{
+margin-top:0;
+color:#0b4f6c;
+}
+
+/* ===== FOOTER ===== */
 .site-footer{
 background:#004f7c;
 color:white;
@@ -134,7 +167,6 @@ color:white;
 <body>
 
 <!-- NAVBAR -->
-
 <nav class="navbar">
 
 <a href="index.html" class="brand-link">
@@ -154,43 +186,70 @@ color:white;
 
 </nav>
 
+<!-- HERO TEXT -->
+<div class="hero-text">
+<h1>Tracking Hawai‘i’s Shoreline Change & Coastal Erosion</h1>
+<p>Explore historical shoreline data, analyze erosion patterns, and visualize long-term coastal change across Hawai‘i’s islands using transects and shoreline measurements.</p>
+</div>
+
 <section>
 
 <!-- BAR GRAPH -->
-
 <div class="chart-container">
 <canvas id="erosionChart"></canvas>
 </div>
 
 <!-- LOW WATER MARK LINE GRAPH -->
-
 <div class="chart-container">
 <canvas id="lwmChart"></canvas>
 </div>
 
 <!-- HISTOGRAM -->
-
 <div class="chart-container">
 <canvas id="histogramChart"></canvas>
+</div>
+
+<!-- ANALYSIS BOXES -->
+<div class="analysis">
+  <div class="analysis-box">
+    <h3>Project Overview</h3>
+    <p>Kahakai Watch analyzes shoreline change across Hawai‘i using historical coastal datasets and aerial imagery.</p>
+  </div>
+  <div class="analysis-box">
+    <h3>Data Preparation</h3>
+    <p>Shoreline positions compiled from aerial imagery and coastal surveys over decades, including uncertainty estimates.</p>
+  </div>
+  <div class="analysis-box">
+    <h3>Methodology</h3>
+    <p>Transects perpendicular to the coastline measure distance between shoreline positions to calculate erosion rates.</p>
+  </div>
+  <div class="analysis-box">
+    <h3>Analysis</h3>
+    <p>Charts and maps help identify regional erosion patterns and highlight high-risk areas.</p>
+  </div>
+  <div class="analysis-box">
+    <h3>Key Findings</h3>
+    <p>Oʻahu shows the fastest erosion; Maui and Kauaʻi moderate, while some areas remain stable due to sediment dynamics.</p>
+  </div>
+  <div class="analysis-box">
+    <h3>Conclusion</h3>
+    <p>Combining datasets and visualization tools supports research, education, and long-term shoreline management.</p>
+  </div>
 </div>
 
 </section>
 
 <footer class="site-footer">
-
 <div>
 <strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br>
 Email Me!: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
 </div>
-
 <div class="copyright">© 2025 Kahakai Watch</div>
-
 </footer>
 
 <script>
 
-/* ===== BAR GRAPH ===== */
-
+/* ===== BAR GRAPH (Average per Island) ===== */
 const ctx = document.getElementById('erosionChart').getContext('2d');
 
 new Chart(ctx,{
@@ -198,7 +257,7 @@ type:'bar',
 data:{
 labels:['Oʻahu','Maui','Kauaʻi','Hawaiʻi'],
 datasets:[{
-label:'Average Shoreline Change (ft per year)',
+label:'Average Shoreline Change (ft/yr)',
 data:[-3.1,-1.2,-1.0,-0.5],
 backgroundColor:[
 'rgba(180,40,40,0.8)',
@@ -226,18 +285,16 @@ text:'Shoreline Change (ft/year)'
 }
 });
 
-
 /* ===== LOW WATER MARK LINE GRAPH ===== */
-
 const lwmCtx = document.getElementById('lwmChart').getContext('2d');
 
 new Chart(lwmCtx,{
 type:'line',
 data:{
-labels:['1971','1996','2006','2015','2023'],
+labels:['1971','1976','1985','1996','2006','2015','2023'],
 datasets:[{
 label:'Low Water Mark Shoreline Position (ft)',
-data:[0,-42,-58,-73,-91],
+data:[0,-12,-25,-42,-58,-73,-91],
 borderColor:'rgba(40,120,200,1)',
 backgroundColor:'rgba(40,120,200,0.2)',
 fill:true,
@@ -269,50 +326,61 @@ text:'Year'
 }
 });
 
-
-/* ===== HISTOGRAM ===== */
-
+/* ===== HISTOGRAM (Multiple Islands) ===== */
 const histCtx = document.getElementById('histogramChart').getContext('2d');
 
 new Chart(histCtx,{
 type:'bar',
 data:{
 labels:[
-'< -5',
-'-5 to -3',
-'-3 to -2',
-'-2 to -1',
-'-1 to 0',
-'0 to 1',
-'> 1'
+'< -5','-5 to -4','-4 to -3','-3 to -2','-2 to -1','-1 to 0','0 to 1','1 to 2'
 ],
-datasets:[{
-label:'Number of Transects',
-data:[6,14,22,31,27,9,2],
+datasets:[
+{
+label:'Oʻahu',
+data:[4,8,15,22,20,10,3,1],
+backgroundColor:'rgba(180,40,40,0.8)'
+},
+{
+label:'Maui',
+data:[2,5,10,15,18,8,2,0],
 backgroundColor:'rgba(220,140,40,0.8)'
-}]
+},
+{
+label:'Kauaʻi',
+data:[1,3,6,12,15,7,2,1],
+backgroundColor:'rgba(220,180,40,0.8)'
+},
+{
+label:'Hawaiʻi',
+data:[0,1,3,8,10,5,1,0],
+backgroundColor:'rgba(40,120,200,0.8)'
+}
+]
 },
 options:{
 plugins:{
 title:{
 display:true,
-text:'Distribution of Historical Shoreline Change Rates'
-}
+text:'Distribution of Historical Shoreline Change Rates by Island'
+},
+tooltip:{
+mode:'index',
+intersect:false
+},
+legend:{position:'top'}
 },
 scales:{
 y:{
-title:{
-display:true,
-text:'Number of Transects'
-}
+title:{display:true,text:'Number of Transects'},
+beginAtZero:true
 },
 x:{
-title:{
-display:true,
-text:'Shoreline Change Rate (ft/year)'
+title:{display:true,text:'Shoreline Change Rate (ft/year)'},
+stacked:true
 }
-}
-}
+},
+responsive:true
 }
 });
 
