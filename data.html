@@ -3,69 +3,207 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Kahakai Watch</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f4f8fb;
+
+/* ===== GENERAL FONT ===== */
+body, h1, h2, h3, p, a, li, div{
+font-family:"Times New Roman", Times, serif;
+margin:0;
+padding:0;
 }
 
-header{
-    background:#0b4f6c;
-    color:white;
-    padding:20px;
-    text-align:center;
+body{
+background:#f6f9fc;
 }
+
+/* ===== NAVBAR ===== */
+
+.navbar{
+width:100%;
+background-color:#001f4d;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 40px;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 8px rgba(0,0,0,0.25);
+}
+
+.brand-link{
+display:flex;
+align-items:center;
+gap:20px;
+text-decoration:none;
+color:white;
+}
+
+.brand-link .logo{
+height:100px;
+width:100px;
+object-fit:cover;
+}
+
+.brand-link div{
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.brand-link .title{
+font-size:32px;
+font-weight:bold;
+color:white;
+}
+
+.brand-link .subtitle{
+font-size:18px;
+color:white;
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:24px;
+}
+
+.nav-links li a{
+text-decoration:none;
+color:white;
+font-size:18px;
+font-weight:500;
+transition:.25s;
+}
+
+.nav-links li a:hover{
+opacity:.7;
+}
+
+/* ===== PAGE SECTION ===== */
 
 section{
-    padding:40px;
+padding:60px 40px;
 }
+
+/* ===== CHART ===== */
 
 .chart-container{
-    width:80%;
-    max-width:800px;
-    margin:auto;
+width:80%;
+max-width:850px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.12);
 }
+
+/* ===== ANALYSIS GRID ===== */
 
 .analysis{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    margin-top:40px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:60px;
+max-width:1200px;
+margin-left:auto;
+margin-right:auto;
 }
 
+/* mobile */
+
+@media (max-width:900px){
+.analysis{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media (max-width:600px){
+.analysis{
+grid-template-columns:1fr;
+}
+}
+
+/* ===== ANALYSIS BOX ===== */
+
 .analysis-box{
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 4px 10px rgba(0,0,0,0.12);
+transition:.2s;
+}
+
+.analysis-box:hover{
+transform:translateY(-4px);
 }
 
 .analysis-box h3{
-    margin-top:0;
-    color:#0b4f6c;
+margin-bottom:10px;
+color:#001f4d;
+font-size:20px;
 }
 
-footer{
-    text-align:center;
-    padding:20px;
-    background:#0b4f6c;
-    color:white;
-    margin-top:40px;
+.analysis-box p{
+line-height:1.5;
 }
+
+/* ===== FOOTER ===== */
+
+.site-footer{
+background:#004f7c;
+color:white;
+padding:25px 40px;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.site-footer a{
+color:white;
+text-decoration:none;
+}
+
+.copyright{
+width:100%;
+text-align:center;
+margin-top:10px;
+font-size:12px;
+color:white;
+}
+
 </style>
 
 </head>
+
 <body>
 
-<header>
-<h1>Kahakai Watch</h1>
-<p>Monitoring Shoreline Change Across Hawaiʻi</p>
-</header>
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+<a href="index.html" class="brand-link">
+<img src="images/kahakaiwatch.jpeg" class="logo">
+<div>
+<div class="title">Kahakai Watch</div>
+<div class="subtitle">Hawai‘i Coastal Erosion Monitoring</div>
+</div>
+</a>
+
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="data.html">Data</a></li>
+<li><a href="map.html">Map</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+
+</nav>
 
 <section>
 
@@ -78,8 +216,8 @@ footer{
 <div class="analysis-box">
 <h3>Project Overview</h3>
 <p>
-Kahakai Watch analyzes shoreline change across Hawaiʻi using historical coastal datasets and aerial imagery. 
-The project measures long-term shoreline movement to identify beaches experiencing erosion and areas where 
+Kahakai Watch analyzes shoreline change across Hawaiʻi using historical coastal datasets and aerial imagery.
+The project measures long-term shoreline movement to identify beaches experiencing erosion and areas where
 shorelines remain stable.
 </p>
 </div>
@@ -87,8 +225,8 @@ shorelines remain stable.
 <div class="analysis-box">
 <h3>Data Preparation</h3>
 <p>
-Historical shoreline positions were compiled from aerial imagery and coastal surveys spanning several decades. 
-Each dataset includes estimated positional uncertainty values which help ensure accurate shoreline comparisons 
+Historical shoreline positions were compiled from aerial imagery and coastal surveys spanning several decades.
+Each dataset includes estimated positional uncertainty values which help ensure accurate shoreline comparisons
 between different years.
 </p>
 </div>
@@ -96,8 +234,8 @@ between different years.
 <div class="analysis-box">
 <h3>Methodology</h3>
 <p>
-Shoreline change rates were calculated using transects placed perpendicular to the coastline. These transects 
-measure the distance between shoreline positions across time to estimate long-term shoreline movement in 
+Shoreline change rates were calculated using transects placed perpendicular to the coastline. These transects
+measure the distance between shoreline positions across time to estimate long-term shoreline movement in
 feet per year.
 </p>
 </div>
@@ -105,8 +243,8 @@ feet per year.
 <div class="analysis-box">
 <h3>Analysis</h3>
 <p>
-Data visualization tools such as bar charts and maps were used to compare shoreline change rates between 
-Hawaiian Islands. These visualizations help identify regional erosion patterns and highlight locations 
+Data visualization tools such as bar charts and maps were used to compare shoreline change rates between
+Hawaiian Islands. These visualizations help identify regional erosion patterns and highlight locations
 experiencing rapid shoreline retreat.
 </p>
 </div>
@@ -114,8 +252,8 @@ experiencing rapid shoreline retreat.
 <div class="analysis-box">
 <h3>Key Findings</h3>
 <p>
-Beaches on Oʻahu show the highest erosion rates, with several locations experiencing shoreline retreat of 
-over three feet per year. Maui and Kauaʻi generally show moderate erosion, while some beaches remain relatively 
+Beaches on Oʻahu show the highest erosion rates, with several locations experiencing shoreline retreat of
+over three feet per year. Maui and Kauaʻi generally show moderate erosion, while some beaches remain relatively
 stable due to sediment movement and coastal conditions.
 </p>
 </div>
@@ -123,8 +261,8 @@ stable due to sediment movement and coastal conditions.
 <div class="analysis-box">
 <h3>Conclusion</h3>
 <p>
-The results demonstrate that shoreline change varies widely across Hawaiʻi. By combining historical shoreline 
-data with modern visualization tools, Kahakai Watch provides accessible information that can support coastal 
+The results demonstrate that shoreline change varies widely across Hawaiʻi. By combining historical shoreline
+data with modern visualization tools, Kahakai Watch provides accessible information that can support coastal
 research, education, and long-term shoreline management.
 </p>
 </div>
@@ -133,15 +271,22 @@ research, education, and long-term shoreline management.
 
 </section>
 
-<footer>
-<p>STEM Capstone Project – Coastal Data Visualization</p>
+<footer class="site-footer">
+
+<div>
+<strong>Dezmond Butay</strong> — STEM Capstone, Waipahu High School<br>
+Email Me!: <a href="mailto:dezmondbutay@gmail.com">dezmondbutay@gmail.com</a>
+</div>
+
+<div class="copyright">© 2025 Kahakai Watch</div>
+
 </footer>
 
 <script>
 
 const ctx = document.getElementById('erosionChart').getContext('2d');
 
-new Chart(ctx, {
+new Chart(ctx,{
 type:'bar',
 data:{
 labels:['Oʻahu','Maui','Kauaʻi','Hawaiʻi'],
